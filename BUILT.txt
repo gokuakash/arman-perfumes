@@ -64,6 +64,19 @@ VERIFICATION (playwright, headless Chrome)
   - mobile menu open/close + body lock; 0px horizontal overflow @390px
   - deployed, live md5 == local md5 (3e5b66c20799c75c1e7dfeefd471f3d6)
 
+FIX (2026-08-19, commit 3f5cf75)
+  Massive paper gap on live site: html/body used overflow-x:hidden, which
+  creates a scroll container and BREAKS position:sticky in Chrome — the
+  hero stage and story card scrolled away instead of pinning, leaving
+  ~150vh + ~220vh of empty background between sections.
+  Replaced overflow-x:hidden with overflow-x:clip on html+body (clips
+  overflow WITHOUT creating a scroll container, preserving sticky).
+  Verified: per-viewport pixel sweep on mobile shows content in every
+  frame (only a 152px intentional band in the final section); sticky
+  pins at top:0 at scroll 844 / 3000; no h-overflow @390px.
+  Redeployed, live md5 == local md5 (330568bbec209dcd25b68f344ba41c69)
+
 COMMITS (master, force-pushed; repo gokuakash/arman-perfumes)
+  3f5cf75 fix: overflow-x clip preserves sticky pinning (this fix)
   8333da9 redesign: Swiss editorial template (this build)
   421ef60 refactor: re-theme with Organic anchor (previous)
