@@ -2,50 +2,68 @@ BUSINESS: ARMAN PERFUMES
 CATEGORY: Perfume store
 URL: https://arman-perfumes.vercel.app
 REPO: github.com/gokuakash/arman-perfumes
-DATE: 2026-08-19 (re-themed)
+DATE: 2026-08-19 (3rd redesign — Swiss)
 MODEL: deepseek-v4-flash-free (opencode/deepseek-v4-flash-free)
 
-DESIGN DIRECTION — "ORGANIC" ANCHOR (frontend-design skill, github.com/Ilm-Alan/frontend-design)
-- Deliberate rejection of the safe dark+gold "luxury" default in favour of the Organic anchor:
-  the unexpected pairing for a perfume store. Sun-washed earth tones, tactile paper, serif-only voice.
-- Surface: sand #E8DCC7 / oat #F1E9D4 (NOT cream, NOT dark). Ink: espresso #2B2118.
-- Accents: terracotta #C66B3D, ochre #C08E3A, moss #606C38, sage #8B9D83.
-- Typography: Fraunces ONLY (single Google family; the anchor restricts Fraunces to Organic).
-- Texture: full-page SVG feTurbulence grain at 5% opacity; halftone dot tile in gallery.
-- Structure: rounded corners 16-32px, soft warm shadows, 1px low-opacity ink borders.
-- Motion: gentle ease cubic-bezier(.22,1,.36,1), 300-500ms; breathing float on hero collage; rotating stamp.
-- Differentiator (one memorable move): rotating circular stamp seal ("ARMAN PERFUMES · PARRYS · EST. CHENNAI")
-  overlapping a two-shot editorial collage in the hero, plus a second stamp seal on the about image.
+DESIGN DIRECTION — "SWISS EDITORIAL" ANCHOR
+Templates no longer repeat across sites: this build swaps the previous
+Organic/terracotta theme AND the card-grid layout for a Swiss editorial
+system. References browsed live in Chrome (playwright MCP):
+  - aesop.com  — paper bg, charcoal ink, square corners, editorial restraint
+  - 21st.dev component demos, code extracted via bundled iframes:
+      #1932 scroll-expansion hero   (image expands on scroll, mix-blend overlay)
+      #1081 container scroll anim   (perspective-tilted pinned card)
+      #1817 hero section 9          (3D tilted card, rotateX)
+Color & motion theory applied from GitHub skills (cloned, read, deleted):
+  - github.com/Ilm-Alan/frontend-design            (8 aesthetic anchors)
+  - github.com/meodai/skill.color-expert           (palette discipline)
+  - github.com/kylezantos/design-motion-principles (Emil Kowalski motion)
 
-SECTIONS (all 10 required present)
-1. Preloader (monogram + animated % + curtain, reduced-motion fast-path) 2. Navbar (sticky blur, active-section,
-hamburger <768px) 3. Hero (staggered masked word reveal, WhatsApp/Call CTAs, 52-review proof, collage+stamp)
-4. Marquee (services strip, paused on hover) 5. Story (est. 2016 copy, "since 2016" stamp seal, 4 counters:
-10+ yrs, 1000+ fragrances, 52 reviews, 100% authentic) 6. Collection (6 cards w/ numbered tiles, hover lift+zoom)
-7. Gallery (5-image collage + halftone 1000+ counter tile, Google storefront photo w/ gradient fallback)
-8. Testimonials (3 quotes, 5 stars) 9. Visit (address/phone/email/website, hours table w/ today highlight,
-Google Maps link, WhatsApp CTA card) 10. Footer (brand, links, hours, dynamic year).
+PALETTE (unique per site — no shared fixed theme)
+  paper    #F5F4F0  neutral gallery white
+  card     #FFFFFF
+  ink      #26231E  charcoal text
+  blue     #002FA7  Yves-Klein accent (numerals, buttons, tiles)
+  lines    rgba(38,35,30,.14/.32)  hairlines
 
-ASSETS
-- Unsplash photo IDs: 1659450013573 (hero), 1543422655, 1533414765079, 1615634260167, 1646149757906,
-  1598207548924, 1535683577427, 1661759740900, 1622618991746, 1758225502621, 1458538977777.
-- Google photo (storefront): lh3.googleusercontent.com/gps-cs-s/AHRPTWmMVYBY... (gradient SVG fallback).
-- Motion: motion@11.11.13 via esm.sh (animate, inView, stagger, scroll).
-- 21st.dev: adapted editorial-collage hero, editorial testimonial, halftone/texture tile, paper-grain shader ideas
-  (component code retrieval was at daily free limit — adapted metadata/design language instead).
-- Research: color-expert skill (meodai/skill.color-expert), design-motion-principles (kylezantos).
+TYPOGRAPHY
+  Space Grotesk (Google Fonts, single family, display + body)
 
-SKIPPED / NOTES
-- rating null in brief → used reviews_count 52 (stars + copy) instead of a numeric rating in hero.
-- Mobile fix: left/right reveal transforms switch to vertical on ≤560px; about-seal + collage constrained; html overflow-x hidden.
-- No build step; single self-contained index.html (inline CSS + JS).
+TEMPLATE / LAYOUT (different from all prior sites)
+  - 250vh scroll-expansion hero: centered image frame scales 1x -> 3.6x to
+    full-bleed while sticky; headline in mix-blend-mode:difference
+  - hairline marquee separator (pause on hover)
+  - 320vh pinned Story card: rotateX(18deg) tilt straightens on scroll,
+    paired with 4-stat counter line (10+ yrs / 1000+ fragrances / 52 reviews / 100%)
+  - Collection: numbered editorial rows 01–06 (Designer, Attar, Mists,
+    Gift Sets, Custom Blending, Wholesale) with hover fly-in image, no grid
+  - Gallery: asymmetric 12-col grid (5/7 + 4/8) + Yves-Klein blue counter tile
+  - Reviews: editorial quote list 01–03 with 5-star SVGs
+  - Visit: contact card + 7-row hours (today highlighted) + maps CTA + dark
+    WhatsApp panel; footer 1.6fr/1fr/1fr/1fr with hairlines
 
-GIT
-- v1 commit: 6170993a (initial website, dark/gold theme)
-- v2 commit: 421ef60 (re-theme → Organic anchor), forced push to master
-- Live on Vercel (aliased arman-perfumes.vercel.app), redeployed 2026-08-19.
+BUSINESS DATA
+  ARMAN PERFUMES, 5 MRV Complex, Second Lane, Beach Road, Parrys,
+  Chennai, Tamil Nadu 600001, India
+  Phone +91 82202 03458 | shopforeperfumes@gmail.com | shopforperfumes.com
+  Hours Mon–Sat 11:00–21:30, Sunday Closed (52 reviews, Google Place
+  ChIJt7kSMStvUjoRs3nyh0076zU)
 
-VERIFICATION (playwright, real browser)
-- 0 console errors; 37/37 scroll reveals fire; all 5 counters animate to targets (10, 1,000, 52, 100, 1,000);
-- no broken images; hero collage overlaps + stamp rotates + marquee loops; nav active tracking; mobile menu
-  open/close with overflow lock; no horizontal scroll at 390px; today's hours row highlighted; year 2026.
+TECH / MOTION
+  Single self-contained index.html (inline CSS + JS, no build step)
+  motion@11.11.13 via esm.sh: scroll() drives hero scale + story-card tilt,
+  inView() drives counters, stagger() for headline words
+  Preloader: blue panel with lettermark + % counter, clip-path exit
+  IntersectionObserver data-reveal system (staggered via --d)
+  Mobile: hamburger full-screen menu, no horizontal overflow at 390px
+
+VERIFICATION (playwright, headless Chrome)
+  - 0 console errors; preloader completes; no broken images
+  - scroll-expansion scale 1 -> 3.6; story card tilt 18deg -> 0 on scroll
+  - counters: 10 / 1,000 / 52 / 100 / 1,000
+  - mobile menu open/close + body lock; 0px horizontal overflow @390px
+  - deployed, live md5 == local md5 (3e5b66c20799c75c1e7dfeefd471f3d6)
+
+COMMITS (master, force-pushed; repo gokuakash/arman-perfumes)
+  8333da9 redesign: Swiss editorial template (this build)
+  421ef60 refactor: re-theme with Organic anchor (previous)
