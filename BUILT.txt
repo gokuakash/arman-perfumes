@@ -1,0 +1,51 @@
+BUSINESS: ARMAN PERFUMES
+CATEGORY: Perfume store
+URL: https://arman-perfumes.vercel.app
+REPO: github.com/gokuakash/arman-perfumes
+DATE: 2026-08-19 (re-themed)
+MODEL: deepseek-v4-flash-free (opencode/deepseek-v4-flash-free)
+
+DESIGN DIRECTION — "ORGANIC" ANCHOR (frontend-design skill, github.com/Ilm-Alan/frontend-design)
+- Deliberate rejection of the safe dark+gold "luxury" default in favour of the Organic anchor:
+  the unexpected pairing for a perfume store. Sun-washed earth tones, tactile paper, serif-only voice.
+- Surface: sand #E8DCC7 / oat #F1E9D4 (NOT cream, NOT dark). Ink: espresso #2B2118.
+- Accents: terracotta #C66B3D, ochre #C08E3A, moss #606C38, sage #8B9D83.
+- Typography: Fraunces ONLY (single Google family; the anchor restricts Fraunces to Organic).
+- Texture: full-page SVG feTurbulence grain at 5% opacity; halftone dot tile in gallery.
+- Structure: rounded corners 16-32px, soft warm shadows, 1px low-opacity ink borders.
+- Motion: gentle ease cubic-bezier(.22,1,.36,1), 300-500ms; breathing float on hero collage; rotating stamp.
+- Differentiator (one memorable move): rotating circular stamp seal ("ARMAN PERFUMES · PARRYS · EST. CHENNAI")
+  overlapping a two-shot editorial collage in the hero, plus a second stamp seal on the about image.
+
+SECTIONS (all 10 required present)
+1. Preloader (monogram + animated % + curtain, reduced-motion fast-path) 2. Navbar (sticky blur, active-section,
+hamburger <768px) 3. Hero (staggered masked word reveal, WhatsApp/Call CTAs, 52-review proof, collage+stamp)
+4. Marquee (services strip, paused on hover) 5. Story (est. 2016 copy, "since 2016" stamp seal, 4 counters:
+10+ yrs, 1000+ fragrances, 52 reviews, 100% authentic) 6. Collection (6 cards w/ numbered tiles, hover lift+zoom)
+7. Gallery (5-image collage + halftone 1000+ counter tile, Google storefront photo w/ gradient fallback)
+8. Testimonials (3 quotes, 5 stars) 9. Visit (address/phone/email/website, hours table w/ today highlight,
+Google Maps link, WhatsApp CTA card) 10. Footer (brand, links, hours, dynamic year).
+
+ASSETS
+- Unsplash photo IDs: 1659450013573 (hero), 1543422655, 1533414765079, 1615634260167, 1646149757906,
+  1598207548924, 1535683577427, 1661759740900, 1622618991746, 1758225502621, 1458538977777.
+- Google photo (storefront): lh3.googleusercontent.com/gps-cs-s/AHRPTWmMVYBY... (gradient SVG fallback).
+- Motion: motion@11.11.13 via esm.sh (animate, inView, stagger, scroll).
+- 21st.dev: adapted editorial-collage hero, editorial testimonial, halftone/texture tile, paper-grain shader ideas
+  (component code retrieval was at daily free limit — adapted metadata/design language instead).
+- Research: color-expert skill (meodai/skill.color-expert), design-motion-principles (kylezantos).
+
+SKIPPED / NOTES
+- rating null in brief → used reviews_count 52 (stars + copy) instead of a numeric rating in hero.
+- Mobile fix: left/right reveal transforms switch to vertical on ≤560px; about-seal + collage constrained; html overflow-x hidden.
+- No build step; single self-contained index.html (inline CSS + JS).
+
+GIT
+- v1 commit: 6170993a (initial website, dark/gold theme)
+- v2 commit: 421ef60 (re-theme → Organic anchor), forced push to master
+- Live on Vercel (aliased arman-perfumes.vercel.app), redeployed 2026-08-19.
+
+VERIFICATION (playwright, real browser)
+- 0 console errors; 37/37 scroll reveals fire; all 5 counters animate to targets (10, 1,000, 52, 100, 1,000);
+- no broken images; hero collage overlaps + stamp rotates + marquee loops; nav active tracking; mobile menu
+  open/close with overflow lock; no horizontal scroll at 390px; today's hours row highlighted; year 2026.
